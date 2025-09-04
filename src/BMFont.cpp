@@ -27,6 +27,7 @@ BMFont::BMFont(const std::string& filename) {
   std::string line;
   std::vector<std::string> pairs, pair;
   std::string k, v;
+  BMFontGlyph tempGlyph;
 
   // TODO: Implement the loader
 
@@ -83,7 +84,32 @@ BMFont::BMFont(const std::string& filename) {
         while (contains(line, "  "))
           line = replaceAll(line, "  ", " ");
 
+        // printf("%s\n", line.c_str());
+
         // TODO: Parse the whole line, then copy the record
+        memset(&tempGlyph, 0, sizeof(BMFontGlyph));
+        pairs = split(line, " ");
+
+        for (const auto& p: pairs) {
+          pair = split(p, "=");
+
+          if (pair.size() == 2) {
+            k = pair.at(0); v = pair.at(1);
+
+            switch (k) {
+              case "id": tempGlyph.id = parseInt(v); break;
+              case "x": tempGlyph.x = parseInt(v); break;
+              case "y": tempGlyph.y = parseInt(v); break;
+              case "width": tempGlyph.width = parseInt(v); break;
+              case "height": tempGlyph.height = parseInt(v); break;
+              case "xoffset": tempGlyph.xoffset = parseInt(v); break;
+              case "yoffset": tempGlyph.yoffset = parseInt(v); break;
+              case "xadvance": tempGlyph.xadvance = parseInt(v); break;
+            }
+          }
+        }
+
+        // TODO: Assign the glyph by ID
       }
     }
   }
