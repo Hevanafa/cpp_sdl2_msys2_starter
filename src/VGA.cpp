@@ -6,11 +6,6 @@ void VGA::initSDL() {
 		printf("Couldn't init SDL! Reason: %s\n", SDL_GetError());
 		return;
 	}
-
-	if (TTF_Init() < 0) {
-		printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
-		return;
-	}
 }
 
 void VGA::initSurface() {
@@ -25,13 +20,18 @@ void VGA::initSurface() {
 	sdlSurface = SDL_GetWindowSurface(sdlWindow);
 }
 
-void VGA::freeSurface() {
-	SDL_FreeSurface(sdlSurface);
-	SDL_DestroyWindow(sdlWindow);
-}
+void VGA::initFont() {
+	if (TTF_Init() < 0) {
+		printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
+		return;
+	}
 
-void VGA::flush() {
-	SDL_UpdateWindowSurface(sdlWindow);
+	// Load game assets
+	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 16);
+	if (nokiaFont == nullptr) {
+		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
+		return;
+	}
 }
 
 int VGA::getScreenWidth() {
@@ -43,6 +43,8 @@ int VGA::getScreenHeight() {
 }
 
 int VGA::getLineHeight() {
+	if (nokiaFont == nullptr) return 0;
+
 	return TTF_FontLineSkip(nokiaFont);
 }
 
@@ -52,6 +54,8 @@ void VGA::print(std::string text, int x, int y) {
 	SDL_Surface* tempSurface;
 	SDL_Rect destRect;
 
+	if (nokiaFont == nullptr) return;
+
 	TTF_SizeText(nokiaFont, text.c_str(), &w, &h);
 	tempSurface = TTF_RenderText_Solid(nokiaFont, text.c_str(), colour);
 
@@ -59,4 +63,18 @@ void VGA::print(std::string text, int x, int y) {
 	SDL_BlitSurface(tempSurface, nullptr, sdlSurface, &destRect);
 
 	SDL_FreeSurface(tempSurface);
+}
+
+void VGA::flush() {
+	SDL_UpdateWindowSurface(sdlWindow);
+}
+
+void VGA::freeFont() {
+	TTF_CloseFont(nokiaFont);
+	TTF_Quit();
+}
+
+void VGA::freeSurface() {
+	SDL_FreeSurface(sdlSurface);
+	SDL_DestroyWindow(sdlWindow);
 }

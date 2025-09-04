@@ -9,10 +9,12 @@ private:
 	SDL_Window* sdlWindow = nullptr;
 	SDL_Surface* sdlSurface = nullptr;
 
+	TTF_Font* nokiaFont;
+
 public:
 	void initSDL();
 	void initSurface();
-	void freeSurface();
+	void initFont();
 
 	SDL_Surface* getSurface() { return sdlSurface; }
 
@@ -24,4 +26,6 @@ public:
 	void print(std::string text, int x, int y);
 
 	void flush();
+	void freeFont();
+	void freeSurface();
 };

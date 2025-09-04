@@ -11,8 +11,6 @@ private:
 	VGA vga;
 	SDL_Event event;
 
-	TTF_Font* nokiaFont;
-
 	uint32_t cornflowerBlue;
 
 	void loadImage(std::string filename, SDL_Surface* target);

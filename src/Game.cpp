@@ -3,13 +3,7 @@
 void Game::INIT() {
 	vga.initSDL();
 	vga.initSurface();
-
-	// Load game assets
-	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 16);
-	if (nokiaFont == nullptr) {
-		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
-		return;
-	}
+	vga.initFont();
 
 	// Init game state
 	cornflowerBlue = 0x6495ed; // SDL_MapRGB(sdlSurface->format, 0x64, 0x95, 0xed);
@@ -66,9 +60,7 @@ Game::Game() {
 	delete imgGasolineMaid;
 	imgGasolineMaid = nullptr;
 
-	TTF_CloseFont(nokiaFont);
-	TTF_Quit();
-
+	vga.freeFont();
 	vga.freeSurface();
 
 	SDL_Quit();
