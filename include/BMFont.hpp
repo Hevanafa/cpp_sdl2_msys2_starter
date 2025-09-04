@@ -26,6 +26,7 @@ public:
 	~BMFont();  // destructor
 
 	int getLineHeight();
+	Image* getImage();
 	std::map<int, BMFontGlyph*> getGlyphs();
 	int measure(const std::string& text);
 };

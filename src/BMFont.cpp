@@ -132,6 +132,10 @@ int BMFont::getLineHeight() {
   return lineHeight;
 }
 
+Image *BMFont::getImage() {
+	return image;
+}
+
 template <typename T, typename U>
 bool mapHasKey(const std::map<T, U>& map, T key) {
   return map.count(key) > 0;
@@ -154,24 +158,27 @@ std::map<int, BMFontGlyph *> BMFont::getGlyphs() {
 	return glyphs;
 }
 
-// TODO: Rewrite BMFont methods to be like what I use in POSIT-92
-
-// TODO:
 void printBMFont(
   BMFont font,
   const std::string& text,
   const int x, const int y,
-  const SDL_Surface* surface)
+  SDL_Surface* surface)
 {
-  int left;
+  int left = x;
   int charcode;
+  BMFontGlyph* g = nullptr;
+  SDL_Rect srcRect, destRect;
 
   for (int a=0; a < text.length(); a++) {
     charcode = text.at(a);
     if (!mapHasKey(font.getGlyphs(), charcode)) continue;
 
-    // TODO: blit a region
+    g = font.getGlyphs()[charcode];
+    srcRect = { g->x, g->y, g->width, g->height };
+    destRect = { left + g->xoffset, y + g->yoffset, g->width, g->height };
 
-    left += font.getGlyphs()[charcode]->xadvance;
+    SDL_BlitSurface(font.getImage()->getSurface(), &srcRect, surface, &destRect);
+
+    left += g->xadvance;
   }
 }
