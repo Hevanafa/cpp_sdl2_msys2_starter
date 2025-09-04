@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <Image.hpp>
 
 struct BMFontGlyph {
@@ -15,6 +16,7 @@ private:
 	std::string face;
 	std::string filename;
 	int lineHeight;
+	std::map<int, BMFontGlyph> glyphs;
 	Image* imgData = nullptr;
 
 public:
