@@ -96,16 +96,14 @@ BMFont::BMFont(const std::string& filename) {
           if (pair.size() == 2) {
             k = pair.at(0); v = pair.at(1);
 
-            switch (k) {
-              case "id": tempGlyph.id = parseInt(v); break;
-              case "x": tempGlyph.x = parseInt(v); break;
-              case "y": tempGlyph.y = parseInt(v); break;
-              case "width": tempGlyph.width = parseInt(v); break;
-              case "height": tempGlyph.height = parseInt(v); break;
-              case "xoffset": tempGlyph.xoffset = parseInt(v); break;
-              case "yoffset": tempGlyph.yoffset = parseInt(v); break;
-              case "xadvance": tempGlyph.xadvance = parseInt(v); break;
-            }
+            if (k == "id") tempGlyph.id = parseInt(v);
+            if (k == "x") tempGlyph.x = parseInt(v);
+            if (k == "y") tempGlyph.y = parseInt(v);
+            if (k == "width") tempGlyph.width = parseInt(v);
+            if (k == "height") tempGlyph.height = parseInt(v);
+            if (k == "xoffset") tempGlyph.xoffset = parseInt(v);
+            if (k == "yoffset") tempGlyph.yoffset = parseInt(v);
+            if (k == "xadvance") tempGlyph.xadvance = parseInt(v);
           }
         }
 
