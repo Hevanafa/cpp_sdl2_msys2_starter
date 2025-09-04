@@ -24,5 +24,6 @@ public:
 	~BMFont();  // destructor
 
 	int getLineHeight();
+	int measure(std::string text);
 	void print(std::string text, int x, int y);
 };
