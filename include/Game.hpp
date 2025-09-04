@@ -4,27 +4,20 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <Image.hpp>
+#include <VGA.hpp>
 
 class Game {
 private:
-	SDL_Window* sdlWindow;
-	SDL_Surface* sdlSurface;
+	VGA vga;
 	SDL_Event event;
 
 	TTF_Font* nokiaFont;
 
 	uint32_t cornflowerBlue;
 
-	// Helper functions
-	int getScreenWidth();
-	int getScreenHeight();
-
 	void loadImage(std::string filename, SDL_Surface* target);
 	void spr(SDL_Surface* imgHandle, int x, int y);
 	void freeImage(SDL_Surface* imgHandle);
-
-	// default font line height
-	int getLineHeight();
 
 	// Game assets
 	Image* imgGasolineMaid = nullptr;
