@@ -107,6 +107,9 @@ Game::Game() {
 	}
 
 	// Cleanup code
+	delete imgGasolineMaid;
+	imgGasolineMaid = nullptr;
+
 	TTF_CloseFont(nokiaFont);
 	TTF_Quit();
 

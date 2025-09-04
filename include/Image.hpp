@@ -13,15 +13,14 @@ private:
 	int w, h;
 
 public:
-	Image();
-	Image(std::string filename);
+	Image(std::string filename);  // constructor
 
 	SDL_Surface* getSurface();
 	bool isSet();
 	int getWidth();
 	int getHeight();
 
-	~Image();
+	~Image();  // destructor
 };
 
 #endif

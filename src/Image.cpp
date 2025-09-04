@@ -1,7 +1,5 @@
 #include <Image.hpp>
 
-Image::Image(): surface(nullptr) {}
-
 Image::Image(std::string filename) {
 	surface = IMG_Load(filename.c_str());
 

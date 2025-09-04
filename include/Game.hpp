@@ -30,7 +30,7 @@ private:
 	int getLineHeight();
 
 	// Game assets
-	Image* imgGasolineMaid;
+	Image* imgGasolineMaid = nullptr;
 
 	// Game state
 	bool done;
