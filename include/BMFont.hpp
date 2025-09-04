@@ -24,6 +24,7 @@ public:
 	~BMFont();  // destructor
 
 	int getLineHeight();
-	int measure(std::string text);
-	void print(std::string text, int x, int y);
+	int measure(const std::string& text);
 };
+
+void printBMFont(const std::string& text, const int x, const int y, const BMFont& font, const SDL_Surface& surface);

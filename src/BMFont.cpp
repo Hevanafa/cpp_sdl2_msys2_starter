@@ -132,5 +132,25 @@ int BMFont::getLineHeight() {
   return lineHeight;
 }
 
-// TODO: int measure(std::string text);
-// TODO: void print(std::string text, int x, int y);
+template <typename T, typename U>
+bool mapHasKey(const std::map<T, U>& map, T key) {
+  return map.count(key) > 0;
+}
+
+int BMFont::measure(const std::string& text) {
+  int result = 0;
+  int charcode;
+
+  for (int a=0; a < text.length(); a++) {
+    charcode = text.at(a);
+    if (mapHasKey(glyphs, charcode))
+      result += glyphs[charcode]->xadvance;
+  }
+
+  return result;
+}
+
+// TODO:
+void printBMFont(const std::string& text, const int x, const int y, const BMFont& font, const SDL_Surface& surface) {
+  
+}
