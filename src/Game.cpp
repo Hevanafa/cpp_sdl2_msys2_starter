@@ -22,7 +22,7 @@ void Game::INIT() {
 	sdlSurface = SDL_GetWindowSurface(sdlWindow);
 
 	// Load game assets
-	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 12);
+	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 14);
 	if (nokiaFont == nullptr) {
 		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
 		return;
@@ -91,6 +91,10 @@ Game::Game() {
 		// Target 60 FPS
 		SDL_Delay(16);
 	}
+
+	// Cleanup code
+	TTF_CloseFont(nokiaFont);
+	TTF_Quit();
 
 	SDL_FreeSurface(sdlSurface);
 	SDL_DestroyWindow(sdlWindow);
