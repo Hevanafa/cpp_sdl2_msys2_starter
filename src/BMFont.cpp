@@ -86,10 +86,22 @@ BMFont::BMFont(const std::string& filename) {
             }
           }
         }
+      } else if (startsWith(line, "common")) {
+        pairs = split(line, " ");
 
-        // TODO: Continue this
+        for (const auto& p: pairs) {
+          pair = split(p, "=");
+
+          if (pair.size() == 2) {
+            k = pair.at(0); v = pair.at(1);
+
+            if (k == "lineHeight") {
+              lineHeight = parseInt(v);
+              printf("Line height: %d\n", lineHeight);
+            }
+          }
+        }
       }
-      // TODO: common
       // TODO: page
       // TODO: char
     }

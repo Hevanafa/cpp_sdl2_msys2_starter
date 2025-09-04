@@ -20,7 +20,7 @@ private:
 	Image* imgData = nullptr;
 
 public:
-	BMFont(std::string filename);  // constructor
+	BMFont(const std::string& filename);  // constructor
 	~BMFont();  // destructor
 
 	int getLineHeight();
