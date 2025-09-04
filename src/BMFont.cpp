@@ -75,8 +75,8 @@ BMFont::BMFont(const std::string& filename) {
             k = pair.at(0); v = pair.at(1);
 
             if (k == "file") {
-              this->filename = replaceAll(v, "\"", "");
-              printf("Filename: %s\n", this->filename.c_str());
+              this->imageFilename = replaceAll(v, "\"", "");
+              printf("Filename: %s\n", this->imageFilename.c_str());
             }
           }
         }
@@ -115,12 +115,17 @@ BMFont::BMFont(const std::string& filename) {
   fontFile.close();
 
   if (image != nullptr) delete image;
-  image = new Image(filename);
+  image = new Image(this->imageFilename);
 }
 
 BMFont::~BMFont() {
-  for (const auto& g: glyphs)
-    delete g.second;
+  int a;
+
+  // for (const auto& g: glyphs)
+  //   delete g.second;
+
+  for (a=0; a<glyphs.size(); a++)
+    delete glyphs[a];
 
   glyphs.clear();
 

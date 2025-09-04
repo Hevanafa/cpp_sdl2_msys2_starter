@@ -21,7 +21,11 @@ void VGA::initSurface() {
 }
 
 void VGA::initFont() {
-	defaultFont = new BMFont("fonts\\chikarego_regular_14.txt");
+	// defaultFont = new BMFont("assets\\fonts\\chikarego_regular_14.txt");
+	defaultFont = new BMFont("assets\\fonts\\nokia_cellphone_fc_8.txt");
+
+	// TODO: Make the 8x8 font
+	// TODO: Load the 8x8 font
 
 	// if (TTF_Init() < 0) {
 	// 	printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
@@ -57,7 +61,9 @@ void VGA::print(std::string text, int x, int y) {
 	SDL_Surface* tempSurface;
 	SDL_Rect destRect;
 
-	return;
+	if (defaultFont == nullptr) return;
+
+	printBMFont(*defaultFont, text, x, y, sdlSurface);
 
 	// if (nokiaFont == nullptr) return;
 

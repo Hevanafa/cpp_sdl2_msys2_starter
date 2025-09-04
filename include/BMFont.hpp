@@ -16,7 +16,7 @@ struct BMFontGlyph {
 class BMFont {
 private:
 	std::string face;
-	std::string filename;
+	std::string imageFilename;
 	int lineHeight;
 	std::map<int, BMFontGlyph*> glyphs;
 	Image* image = nullptr;
@@ -31,4 +31,4 @@ public:
 	int measure(const std::string& text);
 };
 
-void printBMFont(const std::string& text, const int x, const int y, const BMFont& font, const SDL_Surface& surface);
+void printBMFont(BMFont font, const std::string& text, const int x, const int y, SDL_Surface* surface);
