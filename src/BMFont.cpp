@@ -86,7 +86,7 @@ BMFont::BMFont(const std::string& filename) {
 
         // printf("%s\n", line.c_str());
 
-        // TODO: Parse the whole line, then copy the record
+        // Parse the whole line, then copy the record
         memset(&tempGlyph, 0, sizeof(BMFontGlyph));
         pairs = split(line, " ");
 
@@ -109,7 +109,7 @@ BMFont::BMFont(const std::string& filename) {
           }
         }
 
-        // TODO: Assign the glyph by ID
+        glyphs.insert({ tempGlyph.id, &tempGlyph });
       }
     }
   }
