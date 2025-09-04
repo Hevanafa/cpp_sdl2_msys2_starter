@@ -24,7 +24,7 @@ void Game::spr(Image* image, int x, int y) {
 	if (image == nullptr) return;
 
 	destRect = {x, y, image->getWidth(), image->getHeight()};
-	SDL_BlitSurface(image->getSurface(), nullptr, sdlSurface, &destRect);
+	SDL_BlitSurface(image->getSurface(), nullptr, vga.getSurface(), &destRect);
 }
 
 Game::Game() {
@@ -47,14 +47,14 @@ Game::Game() {
 			}
 		}
 
-		SDL_FillRect(sdlSurface, NULL, cornflowerBlue);
+		SDL_FillRect(vga.getSurface(), NULL, cornflowerBlue);
 
 		// Your drawing code here
 		spr(imgGasolineMaid,
-			(getScreenWidth() - imgGasolineMaid->getWidth()) / 2,
-			(getScreenHeight() - imgGasolineMaid->getHeight()) / 2);
+			(vga.getScreenWidth() - imgGasolineMaid->getWidth()) / 2,
+			(vga.getScreenHeight() - imgGasolineMaid->getHeight()) / 2);
 
-		vga.print("Esc - Exit", 0, getScreenHeight() - getLineHeight());
+		vga.print("Esc - Exit", 0, vga.getScreenHeight() - vga.getLineHeight());
 
 		vga.flush();
 

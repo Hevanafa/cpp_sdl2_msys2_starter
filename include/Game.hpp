@@ -27,7 +27,6 @@ private:
 	int clicks;
 
 	void INIT();
-	void printString(std::string text, int x, int y);
 	void spr(Image* image, int x, int y);
 
 public:
