@@ -7,12 +7,15 @@ say Cwd::cwd;
 
 sub build_project {
   my $gpp_path = "C:\\msys64\\ucrt64\\bin\\c++.exe";
-  my $output_dir = "dist";
+  my $cwd = Cwd::cwd;
+  my $output_dir = "$cwd\\dist";
   my $output_file = "main.exe";
 
   my @args = (
     $gpp_path,
     "-Iinclude",
+    "-Wall",
+    "-Wl,-verbose",
     "-g",
     "src\\main.cpp",
     "src\\Game.cpp",
