@@ -4,11 +4,11 @@
 #include <panic.hpp>
 #include "BMFont.hpp"
 
-bool fileExists(std::string filename) {
+bool fileExists(const std::string& filename) {
   return std::filesystem::exists(filename);
 }
 
-bool startsWith(std::string txt, std::string searchStr) {
+bool startsWith(const std::string& txt, const std::string& searchStr) {
   return txt.rfind(searchStr) == 0;
 }
 
@@ -46,7 +46,15 @@ std::string replaceAll(const std::string& source, const std::string& searchStr, 
   return result;
 }
 
-BMFont::BMFont(std::string filename) {
+int parseInt(const std::string& text) {
+  try {
+    return std::stoi(text);
+  } catch (const std::invalid_argument& e) {
+    return 0;
+  }
+}
+
+BMFont::BMFont(const std::string& filename) {
   if (!fileExists(filename)) {
     panicHalt("Couldn't find " + filename + "!");
     return;
@@ -81,6 +89,9 @@ BMFont::BMFont(std::string filename) {
 
         // TODO: Continue this
       }
+      // TODO: common
+      // TODO: page
+      // TODO: char
     }
   }
 
