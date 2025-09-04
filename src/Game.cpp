@@ -6,6 +6,11 @@ void Game::INIT() {
 		return;
 	}
 
+	if (TTF_Init() < 0) {
+		printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
+		return;
+	}
+
 	// Can return nullptr
 	sdlWindow = SDL_CreateWindow(
 		"Hello SDL2!",
@@ -16,10 +21,47 @@ void Game::INIT() {
 	// Can return nullptr
 	sdlSurface = SDL_GetWindowSurface(sdlWindow);
 
+	// Load game assets
+	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 12);
+	if (nokiaFont == nullptr) {
+		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
+		return;
+	}
+
+	// Init game state
 	cornflowerBlue = SDL_MapRGB(sdlSurface->format, 0x64, 0x95, 0xed);
+	done = false;
+	clicks = 0;
 }
 
-Game::Game(): done(false), clicks(0) {
+int Game::getScreenWidth() {
+	return sdlSurface->w;
+}
+
+int Game::getScreenHeight() {
+	return sdlSurface->h;
+}
+
+int Game::getLineHeight() {
+	return TTF_FontLineSkip(nokiaFont);
+}
+
+void Game::printString(std::string text, int x, int y) {
+	int w, h;
+	SDL_Color colour = {0xff, 0xff, 0xff, 0xff};
+	SDL_Surface* tempSurface;
+	SDL_Rect destRect;
+
+	TTF_SizeText(nokiaFont, text.c_str(), &w, &h);
+	tempSurface = TTF_RenderText_Solid(nokiaFont, text.c_str(), colour);
+
+	destRect = {x, y, w, h};
+	SDL_BlitSurface(tempSurface, nullptr, sdlSurface, &destRect);
+
+	SDL_FreeSurface(tempSurface);
+}
+
+Game::Game() {
 	INIT();
 
 	while (!done) {
@@ -42,6 +84,7 @@ Game::Game(): done(false), clicks(0) {
 		SDL_FillRect(sdlSurface, NULL, cornflowerBlue);
 
 		// Your drawing code here
+		printString("Esc - Exit", 0, getScreenHeight() - getLineHeight());
 
 		SDL_UpdateWindowSurface(sdlWindow);
 
