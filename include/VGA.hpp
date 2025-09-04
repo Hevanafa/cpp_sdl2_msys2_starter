@@ -9,7 +9,7 @@ private:
 	SDL_Window* sdlWindow = nullptr;
 	SDL_Surface* sdlSurface = nullptr;
 
-	BMFont* nokiaFont = nullptr;
+	BMFont* defaultFont = nullptr;
 
 public:
 	void initSDL();

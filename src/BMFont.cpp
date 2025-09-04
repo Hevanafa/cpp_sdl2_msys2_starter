@@ -101,8 +101,22 @@ BMFont::BMFont(const std::string& filename) {
             }
           }
         }
+      } else if (startsWith(line, "page")) {
+        pairs = split(line, " ");
+
+        for (const auto& p: pairs) {
+          pair = split(p, "=");
+
+          if (pair.size() == 2) {
+            k = pair.at(0); v = pair.at(1);
+
+            if (k == "file") {
+              this->filename = replaceAll(v, "\"", "");
+              printf("Filename: %s\n", this->filename.c_str());
+            }
+          }
+        }
       }
-      // TODO: page
       // TODO: char
     }
   }

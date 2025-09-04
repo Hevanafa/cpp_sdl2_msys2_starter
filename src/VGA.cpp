@@ -21,8 +21,8 @@ void VGA::initSurface() {
 }
 
 void VGA::initFont() {
-	BMFont b("fonts\\chikarego_regular_14.txt");
-	
+	defaultFont = new BMFont("fonts\\chikarego_regular_14.txt");
+
 	// if (TTF_Init() < 0) {
 	// 	printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
 	// 	return;
@@ -75,6 +75,7 @@ void VGA::flush() {
 }
 
 void VGA::freeFont() {
+	delete defaultFont;
 	// TTF_CloseFont(nokiaFont);
 	// TTF_Quit();
 }
