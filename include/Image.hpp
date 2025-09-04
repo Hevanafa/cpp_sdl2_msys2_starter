@@ -12,21 +12,13 @@ private:
 	SDL_Surface* surface;
 
 public:
-	Image(std::string filename) {
-		surface = IMG_Load(filename.c_str());
+	Image();
+	Image(std::string filename);
 
-		if (surface == nullptr) {
-			printf("Couldn't load %s!", filename.c_str());
-			return;
-		}
-	}
+	SDL_Surface* getSurface();
+	bool isSet();
 
-	SDL_Surface* getSurface() { return surface; }
-	bool isSet() { return surface != nullptr; }
-
-	~Image() {
-		SDL_FreeSurface(surface);
-	}
+	~Image();
 };
 
 #endif

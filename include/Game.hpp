@@ -27,7 +27,9 @@ private:
 
 	// default font line height
 	int getLineHeight();
-	
+
+	// Game assets
+	Image* imgGasolineMaid;
 
 	// Game state
 	bool done;

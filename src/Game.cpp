@@ -1,4 +1,5 @@
-#include "../include/Game.hpp"
+#include <Game.hpp>
+#include <Image.hpp>
 
 void Game::INIT() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -32,6 +33,8 @@ void Game::INIT() {
 	cornflowerBlue = SDL_MapRGB(sdlSurface->format, 0x64, 0x95, 0xed);
 	done = false;
 	clicks = 0;
+
+	imgGasolineMaid = new Image("assets\\img\\gasoline_maid.png");
 }
 
 int Game::getScreenWidth() {
