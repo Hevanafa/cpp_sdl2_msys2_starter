@@ -114,8 +114,8 @@ BMFont::BMFont(const std::string& filename) {
 
   fontFile.close();
 
-  if (imgData != nullptr) delete imgData;
-  imgData = new Image(filename);
+  if (image != nullptr) delete image;
+  image = new Image(filename);
 }
 
 BMFont::~BMFont() {
@@ -124,8 +124,8 @@ BMFont::~BMFont() {
 
   glyphs.clear();
 
-  delete imgData;
-  imgData = nullptr;
+  delete image;
+  image = nullptr;
 }
 
 int BMFont::getLineHeight() {
@@ -150,7 +150,28 @@ int BMFont::measure(const std::string& text) {
   return result;
 }
 
+std::map<int, BMFontGlyph *> BMFont::getGlyphs() {
+	return glyphs;
+}
+
+// TODO: Rewrite BMFont methods to be like what I use in POSIT-92
+
 // TODO:
-void printBMFont(const std::string& text, const int x, const int y, const BMFont& font, const SDL_Surface& surface) {
-  
+void printBMFont(
+  BMFont font,
+  const std::string& text,
+  const int x, const int y,
+  const SDL_Surface* surface)
+{
+  int left;
+  int charcode;
+
+  for (int a=0; a < text.length(); a++) {
+    charcode = text.at(a);
+    if (!mapHasKey(font.getGlyphs(), charcode)) continue;
+
+    // TODO: blit a region
+
+    left += font.getGlyphs()[charcode]->xadvance;
+  }
 }

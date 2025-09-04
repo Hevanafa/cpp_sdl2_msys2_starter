@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <SDL2/SDL.h>
+
 #include <Image.hpp>
 
 struct BMFontGlyph {
@@ -17,13 +19,14 @@ private:
 	std::string filename;
 	int lineHeight;
 	std::map<int, BMFontGlyph*> glyphs;
-	Image* imgData = nullptr;
+	Image* image = nullptr;
 
 public:
 	BMFont(const std::string& filename);  // constructor
 	~BMFont();  // destructor
 
 	int getLineHeight();
+	std::map<int, BMFontGlyph*> getGlyphs();
 	int measure(const std::string& text);
 };
 
