@@ -3,10 +3,8 @@
 Image::Image(std::string filename) {
 	surface = IMG_Load(filename.c_str());
 
-	if (surface == nullptr) {
-		printf("Couldn't load %s!", filename.c_str());
-		return;
-	}
+	if (surface == nullptr)
+		panicHalt("Couldn't load %s!", filename.c_str());
 }
 
 SDL_Surface* Image::getSurface() { return surface; }

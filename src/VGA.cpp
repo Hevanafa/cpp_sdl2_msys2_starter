@@ -2,10 +2,8 @@
 
 void VGA::initSDL() {
 	// printf("Hello world");
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		printf("Couldn't init SDL! Reason: %s\n", SDL_GetError());
-		return;
-	}
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+		panicHalt("Couldn't init SDL! Reason: %s\n", SDL_GetError());
 }
 
 void VGA::initSurface() {

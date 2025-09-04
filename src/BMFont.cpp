@@ -19,7 +19,7 @@ int parseInt(const std::string& text) {
 
 BMFont::BMFont(const std::string& filename) {
   if (!fileExists(filename)) {
-    panicHalt("Couldn't find " + filename + "!");
+    panicHalt("BMFont: Couldn't find " + filename + "!");
     return;
   }
 

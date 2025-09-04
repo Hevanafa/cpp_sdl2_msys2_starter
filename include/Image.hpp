@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include <panic.hpp>
+
 class Image {
 private:
 	SDL_Surface* surface;
