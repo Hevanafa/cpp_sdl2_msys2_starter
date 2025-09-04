@@ -2,6 +2,7 @@
 
 #include <string>
 #include <SDL2/SDL.h>
+#include <BMFont.hpp>
 
 class VGA {
 private:
