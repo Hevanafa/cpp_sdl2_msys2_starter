@@ -27,7 +27,7 @@ void VGA::initFont() {
 	}
 
 	// Load game assets
-	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 16);
+	nokiaFont = TTF_OpenFont("assets\\fonts\\nokiafc22.ttf", 16);
 	if (nokiaFont == nullptr) {
 		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
 		return;
