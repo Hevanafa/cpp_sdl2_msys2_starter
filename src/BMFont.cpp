@@ -79,8 +79,12 @@ BMFont::BMFont(const std::string& filename) {
             }
           }
         }
+      } else if (startsWith(line, "char") && !startsWith(line, "chars")) {
+        while (contains(line, "  "))
+          line = replaceAll(line, "  ", " ");
+
+        // TODO: Parse the whole line, then copy the record
       }
-      // TODO: char
     }
   }
 
@@ -103,3 +107,6 @@ BMFont::~BMFont() {
 int BMFont::getLineHeight() {
   return lineHeight;
 }
+
+// TODO: int measure(std::string text);
+// TODO: void print(std::string text, int x, int y);

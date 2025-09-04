@@ -27,6 +27,10 @@ std::vector<std::string> split(const std::string& text, const std::string& delim
   return result;
 }
 
+bool contains(const std::string& source, const std::string& searchStr) {
+  return source.find(searchStr) != std::string::npos;
+}
+
 std::string replaceAll(const std::string& source, const std::string& searchStr, const std::string& replaceStr) {
   std::string result = source;
   int pos = 0;
