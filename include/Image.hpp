@@ -10,6 +10,7 @@
 class Image {
 private:
 	SDL_Surface* surface;
+	int w, h;
 
 public:
 	Image();
@@ -17,6 +18,8 @@ public:
 
 	SDL_Surface* getSurface();
 	bool isSet();
+	int getWidth();
+	int getHeight();
 
 	~Image();
 };

@@ -6,6 +6,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <Image.hpp>
 
 class Game {
 private:
@@ -37,6 +38,7 @@ private:
 
 	void INIT();
 	void printString(std::string text, int x, int y);
+	void spr(Image* image, int x, int y);
 
 public:
 	Game();

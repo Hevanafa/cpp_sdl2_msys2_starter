@@ -1,5 +1,4 @@
 #include <Game.hpp>
-#include <Image.hpp>
 
 void Game::INIT() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -23,7 +22,7 @@ void Game::INIT() {
 	sdlSurface = SDL_GetWindowSurface(sdlWindow);
 
 	// Load game assets
-	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 14);
+	nokiaFont = TTF_OpenFont("fonts\\nokiafc22.ttf", 16);
 	if (nokiaFont == nullptr) {
 		printf("Couldn't load font! Reason: %s\n", TTF_GetError());
 		return;
@@ -34,7 +33,7 @@ void Game::INIT() {
 	done = false;
 	clicks = 0;
 
-	imgGasolineMaid = new Image("assets\\img\\gasoline_maid.png");
+	imgGasolineMaid = new Image("assets\\img\\gasoline_maid_256px.png");
 }
 
 int Game::getScreenWidth() {
@@ -64,6 +63,14 @@ void Game::printString(std::string text, int x, int y) {
 	SDL_FreeSurface(tempSurface);
 }
 
+void Game::spr(Image* image, int x, int y) {
+	SDL_Rect destRect;
+	if (image == nullptr) return;
+
+	destRect = {x, y, image->getWidth(), image->getHeight()};
+	SDL_BlitSurface(image->getSurface(), nullptr, sdlSurface, &destRect);
+}
+
 Game::Game() {
 	INIT();
 
@@ -87,6 +94,10 @@ Game::Game() {
 		SDL_FillRect(sdlSurface, NULL, cornflowerBlue);
 
 		// Your drawing code here
+		spr(imgGasolineMaid,
+			(getScreenWidth() - imgGasolineMaid->getWidth()) / 2,
+			(getScreenHeight() - imgGasolineMaid->getHeight()) / 2);
+
 		printString("Esc - Exit", 0, getScreenHeight() - getLineHeight());
 
 		SDL_UpdateWindowSurface(sdlWindow);
