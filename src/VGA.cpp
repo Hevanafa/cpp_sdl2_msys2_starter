@@ -21,6 +21,8 @@ void VGA::initSurface() {
 }
 
 void VGA::initFont() {
+	BMFont b("fonts\\chikarego_regular_14.txt");
+	
 	// if (TTF_Init() < 0) {
 	// 	printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());
 	// 	return;

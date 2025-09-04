@@ -14,13 +14,12 @@ bool startsWith(std::string txt, std::string searchStr) {
 
 std::vector<std::string> split(const std::string& text, const std::string& delimiter) {
 	std::vector<std::string> result;
-	std::string str;
-	size_t pos;
+	std::string str = text;
+	int pos = 0;
 
 	if (text.empty()) return result;
 
 	str = text;
-	pos = 0;
 
 	while ((pos = str.find(delimiter)) != std::string::npos) {
 		auto token = str.substr(0, pos);
@@ -35,7 +34,7 @@ std::vector<std::string> split(const std::string& text, const std::string& delim
 
 std::string replaceAll(const std::string& source, const std::string& searchStr, const std::string& replaceStr) {
 	std::string result = source;
-	size_t pos = 0;
+	int pos = 0;
 	
 	if (searchStr.empty()) return result;
 
@@ -61,7 +60,8 @@ BMFont::BMFont(std::string filename) {
 	if (fontFile.is_open()) {
 		while (std::getline(fontFile, line)) {
 			if (startsWith(line, "info")) {
-
+				printf("%s\n", line.c_str());
+				// TODO: Continue this
 			}
 		}
 	}
