@@ -1,0 +1,32 @@
+{
+    "tasks": [
+        {
+            "label": "Build SDL2",
+            "type": "cppbuild",
+            "command": "C:\\msys64\\ucrt64\\bin\\c++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-Iinclude",
+                "-g",
+                "src\\main.cpp",
+                "src\\Game.cpp",
+                "-o",
+                "dist\\main.exe",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
