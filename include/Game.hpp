@@ -17,15 +17,21 @@ private:
 
 	uint32_t cornflowerBlue;
 
-	// Game state
-	bool done;
-	int clicks;
-
+	// Helper functions
 	int getScreenWidth();
 	int getScreenHeight();
 
+	void loadImage(std::string filename, SDL_Surface* target);
+	void spr(SDL_Surface* imgHandle, int x, int y);
+	void freeImage(SDL_Surface* imgHandle);
+
 	// default font line height
 	int getLineHeight();
+	
+
+	// Game state
+	bool done;
+	int clicks;
 
 	void INIT();
 	void printString(std::string text, int x, int y);
