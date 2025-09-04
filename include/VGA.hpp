@@ -2,14 +2,13 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 
 class VGA {
 private:
 	SDL_Window* sdlWindow = nullptr;
 	SDL_Surface* sdlSurface = nullptr;
 
-	TTF_Font* nokiaFont;
+	BMFont* nokiaFont = nullptr;
 
 public:
 	void initSDL();
