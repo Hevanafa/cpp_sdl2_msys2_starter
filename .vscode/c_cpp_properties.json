@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/include"
+                "C:\\msys64\\ucrt64\\include",
+                "${workspaceFolder}\\include"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,7 +15,7 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "compilerPath": "C:\\msys64\\ucrt64\\bin\\c++.exe",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-clang-x64"
         }
     ],
     "version": 4
