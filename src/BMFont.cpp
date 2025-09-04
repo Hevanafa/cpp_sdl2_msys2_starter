@@ -54,13 +54,31 @@ BMFont::BMFont(std::string filename) {
 
 	std::ifstream fontFile(filename);
 	std::string line;
+	std::vector<std::string> pairs, pair;
+	std::string k, v;
 
 	// TODO: Implement the loader
 
 	if (fontFile.is_open()) {
 		while (std::getline(fontFile, line)) {
+			pairs.clear();
+
 			if (startsWith(line, "info")) {
-				printf("%s\n", line.c_str());
+				// printf("%s\n", line.c_str());
+				pairs = split(line, " ");
+
+				for (const auto& p: pairs) {
+					pair = split(p, "=");
+					
+					if (pair.size() == 2) {
+						k = pair.at(0); v = pair.at(1);
+						if (k == "face") {
+							face = replaceAll(v, "\"", "");
+							printf("Font face: %s\n", face.c_str());
+						}
+					}
+				}
+
 				// TODO: Continue this
 			}
 		}
