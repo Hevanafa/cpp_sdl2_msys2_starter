@@ -16,10 +16,13 @@ private:
 	std::string face;
 	std::string filename;
 	int lineHeight;
-	std::map<int, BMFontGlyph> glyphs;
+	std::map<int, BMFontGlyph*> glyphs;
 	Image* imgData = nullptr;
 
 public:
 	BMFont(std::string filename);  // constructor
 	~BMFont();  // destructor
+
+	int getLineHeight();
+	void print(std::string text, int x, int y);
 };

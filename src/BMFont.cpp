@@ -16,5 +16,21 @@ BMFont::BMFont(std::string filename) {
 		return;
 	}
 
+	// TODO: Implement the loader
 
+
+}
+
+BMFont::~BMFont() {
+	for (const auto& g: glyphs)
+		delete g.second;
+
+	glyphs.clear();
+
+	delete imgData;
+	imgData = nullptr;
+}
+
+int BMFont::getLineHeight() {
+	return lineHeight;
 }
