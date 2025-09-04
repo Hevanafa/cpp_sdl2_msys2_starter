@@ -33,6 +33,20 @@ std::vector<std::string> split(const std::string& text, const std::string& delim
 	return result;
 }
 
+std::string replaceAll(const std::string& source, const std::string& searchStr, const std::string& replaceStr) {
+	std::string result = source;
+	size_t pos = 0;
+	
+	if (searchStr.empty()) return result;
+
+	while ((pos = result.find(searchStr, pos)) != std::string::npos) {
+		result.replace(pos, searchStr.length(), replaceStr);
+		pos += replaceStr.length();
+	}
+
+	return result;
+}
+
 BMFont::BMFont(std::string filename) {
 	if (!fileExists(filename)) {
 		panicHalt("Couldn't find " + filename + "!");
