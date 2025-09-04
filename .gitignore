@@ -1,1 +1,2 @@
-cpp_sdl2_msys2_starter.code-workspace
+dist/
+*.code-workspace
