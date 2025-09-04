@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef IMAGE_HPP
-#define IMAGE_HPP
-
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -22,5 +19,3 @@ public:
 
 	~Image();  // destructor
 };
-
-#endif

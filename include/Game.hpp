@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef GAME_HPP
-#define GAME_HPP
-
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -43,5 +40,3 @@ private:
 public:
 	Game();
 };
-
-#endif
