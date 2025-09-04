@@ -83,6 +83,11 @@ BMFont::BMFont(std::string filename) {
       }
     }
   }
+
+  fontFile.close();
+
+  if (imgData != nullptr) delete imgData;
+  imgData = new Image(filename);
 }
 
 BMFont::~BMFont() {
