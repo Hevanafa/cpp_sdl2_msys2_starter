@@ -19,7 +19,7 @@ private:
   std::string face;
   std::string imageFilename;
   int lineHeight;
-  std::map<int, BMFontGlyph*> glyphs;
+  std::map<int, BMFontGlyph> glyphs;
   Image* image = nullptr;
 
 public:
@@ -28,7 +28,7 @@ public:
 
   int getLineHeight();
   Image* getImage();
-  std::map<int, BMFontGlyph*> getGlyphs();
+  std::map<int, BMFontGlyph>& getGlyphs();
   int measure(const std::string& text);
   void print(const std::string& text, const int x, const int y, SDL_Surface* surface);
 };

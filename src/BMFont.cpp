@@ -28,8 +28,6 @@ BMFont::BMFont(const std::string& filename) {
   std::string k, v;
   BMFontGlyph tempGlyph;
 
-  // TODO: Implement the loader
-
   if (fontFile.is_open()) {
     while (std::getline(fontFile, line)) {
       pairs.clear();
@@ -106,12 +104,18 @@ BMFont::BMFont(const std::string& filename) {
           }
         }
 
-        glyphs.insert({ tempGlyph.id, &tempGlyph });
+        printf("Glyph %d: %d, %d, %d, %d\n",
+          tempGlyph.id,
+          tempGlyph.x, tempGlyph.y, tempGlyph.width, tempGlyph.height);
+
+        glyphs.insert({ tempGlyph.id, tempGlyph });
       }
     }
   }
 
   fontFile.close();
+
+  printf("Loaded %d glyphs", glyphs.size());
 
   if (image != nullptr) delete image;
   image = new Image(this->imageFilename);
@@ -149,13 +153,13 @@ int BMFont::measure(const std::string& text) {
   for (int a=0; a < text.length(); a++) {
     charcode = text.at(a);
     if (mapHasKey(glyphs, charcode))
-      result += glyphs[charcode]->xadvance;
+      result += glyphs[charcode].xadvance;
   }
 
   return result;
 }
 
-std::map<int, BMFontGlyph *> BMFont::getGlyphs() {
+std::map<int, BMFontGlyph>& BMFont::getGlyphs() {
 	return glyphs;
 }
 
@@ -166,19 +170,22 @@ void BMFont::print(
 {
   int left = x;
   int charcode;
-  BMFontGlyph* g = nullptr;
+  BMFontGlyph g;
   SDL_Rect srcRect, destRect;
 
   for (int a=0; a < text.length(); a++) {
     charcode = text.at(a);
     if (!mapHasKey(getGlyphs(), charcode)) continue;
 
+    // this creates a copy of the original
     g = getGlyphs()[charcode];
-    srcRect = { g->x, g->y, g->width, g->height };
-    destRect = { left + g->xoffset, y + g->yoffset, g->width, g->height };
+
+    // printf("Glyph %d: %d, %d, %d, %d\n", charcode, g->x, g->y, g->width, g->height);
+    srcRect = { g.x, g.y, g.width, g.height };
+    destRect = { left + g.xoffset, y + g.yoffset, g.width, g.height };
 
     SDL_BlitSurface(getImage()->getSurface(), &srcRect, surface, &destRect);
 
-    left += g->xadvance;
+    left += g.xadvance;
   }
 }
