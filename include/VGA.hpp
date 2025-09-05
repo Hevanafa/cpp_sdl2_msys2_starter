@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <BMFont.hpp>
 
+#include <panic.hpp>
+
 class VGA {
 private:
   SDL_Window* sdlWindow = nullptr;
