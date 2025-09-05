@@ -120,11 +120,8 @@ BMFont::BMFont(const std::string& filename) {
 BMFont::~BMFont() {
   int a;
 
-  // for (const auto& g: glyphs)
-  //   delete g.second;
-
   for (a=0; a<glyphs.size(); a++)
-    delete glyphs[a];
+    glyphs.erase(0);
 
   glyphs.clear();
 
