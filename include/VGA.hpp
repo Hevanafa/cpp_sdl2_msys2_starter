@@ -9,7 +9,9 @@
 class VGA {
 private:
   SDL_Window* sdlWindow = nullptr;
-  SDL_Surface* sdlSurface = nullptr;
+  SDL_Surface* sdlVGASurface = nullptr;
+  SDL_Surface* sdlVGAScaled = nullptr;
+
 
   BMFont* defaultFont = nullptr;
 
@@ -18,7 +20,7 @@ public:
   void initSurface();
   void initFont();
 
-  SDL_Surface* getSurface() { return sdlSurface; }
+  SDL_Surface* getSurface() { return sdlVGASurface; }
 
   int getScreenWidth();
   int getScreenHeight();

@@ -18,7 +18,10 @@ void VGA::initSurface() {
     SDL_WINDOW_SHOWN);
 
   // Can return nullptr
-  sdlSurface = SDL_GetWindowSurface(sdlWindow);
+  // sdlSurface = SDL_GetWindowSurface(sdlWindow);
+
+  sdlVGAScaled = SDL_GetWindowSurface(sdlWindow);
+  sdlVGASurface = SDL_CreateRGBSurfaceWithFormat(0, 320, 200, 32, sdlVGAScaled->format->format);
 }
 
 void VGA::initFont() {
@@ -27,11 +30,11 @@ void VGA::initFont() {
 }
 
 int VGA::getScreenWidth() {
-  return sdlSurface->w;
+  return sdlVGASurface->w;
 }
 
 int VGA::getScreenHeight() {
-  return sdlSurface->h;
+  return sdlVGASurface->h;
 }
 
 int VGA::getLineHeight() {
@@ -46,10 +49,12 @@ void VGA::print(std::string text, int x, int y) {
 
   if (defaultFont == nullptr) return;
 
-  defaultFont->print(text, x, y, sdlSurface);
+  defaultFont->print(text, x, y, sdlVGASurface);
 }
 
 void VGA::flush() {
+  SDL_Rect destRect = {0, 0, 640, 400};
+  SDL_BlitScaled(sdlVGASurface, nullptr, sdlVGAScaled, &destRect);
   SDL_UpdateWindowSurface(sdlWindow);
 }
 
@@ -58,6 +63,7 @@ void VGA::freeFont() {
 }
 
 void VGA::freeSurface() {
-  SDL_FreeSurface(sdlSurface);
+  SDL_FreeSurface(sdlVGASurface);
+  SDL_FreeSurface(sdlVGAScaled);
   SDL_DestroyWindow(sdlWindow);
 }
