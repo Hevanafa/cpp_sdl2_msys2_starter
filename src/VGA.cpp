@@ -1,9 +1,12 @@
 #include "VGA.hpp"
 
 void VGA::initSDL() {
-  // printf("Hello world");
-  if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-    panicHalt("Couldn't init SDL! Reason: %s\n", SDL_GetError());
+  std::string s;
+
+  if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    s = SDL_GetError();
+    panicHalt("Couldn't init SDL! Reason: " + s + "\n");
+  }
 }
 
 void VGA::initSurface() {
@@ -21,9 +24,6 @@ void VGA::initSurface() {
 void VGA::initFont() {
   // defaultFont = new BMFont("assets\\fonts\\chikarego_regular_14.txt");
   defaultFont = new BMFont("assets\\fonts\\nokia_cellphone_fc_8.txt");
-
-  // TODO: Make the 8x8 font
-  // TODO: Load the 8x8 font
 
   // if (TTF_Init() < 0) {
   // 	printf("Couldn't init SDL_ttf! Reason: %s\n", TTF_GetError());

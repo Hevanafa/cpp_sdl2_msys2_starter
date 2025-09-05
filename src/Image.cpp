@@ -4,7 +4,7 @@ Image::Image(std::string filename) {
   surface = IMG_Load(filename.c_str());
 
   if (surface == nullptr)
-    panicHalt("Couldn't load %s!", filename.c_str());
+    panicHalt("Image: Couldn't load " + filename + "!");
 }
 
 SDL_Surface* Image::getSurface() { return surface; }
