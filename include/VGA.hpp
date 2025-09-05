@@ -6,26 +6,26 @@
 
 class VGA {
 private:
-	SDL_Window* sdlWindow = nullptr;
-	SDL_Surface* sdlSurface = nullptr;
+  SDL_Window* sdlWindow = nullptr;
+  SDL_Surface* sdlSurface = nullptr;
 
-	BMFont* defaultFont = nullptr;
+  BMFont* defaultFont = nullptr;
 
 public:
-	void initSDL();
-	void initSurface();
-	void initFont();
+  void initSDL();
+  void initSurface();
+  void initFont();
 
-	SDL_Surface* getSurface() { return sdlSurface; }
+  SDL_Surface* getSurface() { return sdlSurface; }
 
-	int getScreenWidth();
-	int getScreenHeight();
-	// default font line height
-	int getLineHeight();
+  int getScreenWidth();
+  int getScreenHeight();
+  // default font line height
+  int getLineHeight();
 
-	void print(std::string text, int x, int y);
+  void print(std::string text, int x, int y);
 
-	void flush();
-	void freeFont();
-	void freeSurface();
+  void flush();
+  void freeFont();
+  void freeSurface();
 };

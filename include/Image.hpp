@@ -8,16 +8,16 @@
 
 class Image {
 private:
-	SDL_Surface* surface;
-	int w, h;
+  SDL_Surface* surface;
+  int w, h;
 
 public:
-	Image(std::string filename);  // constructor
+  Image(std::string filename);  // constructor
 
-	SDL_Surface* getSurface();
-	bool isSet();
-	int getWidth();
-	int getHeight();
+  SDL_Surface* getSurface();
+  bool isSet();
+  int getWidth();
+  int getHeight();
 
-	~Image();  // destructor
+  ~Image();  // destructor
 };
