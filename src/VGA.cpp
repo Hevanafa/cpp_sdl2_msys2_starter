@@ -46,7 +46,7 @@ void VGA::print(std::string text, int x, int y) {
 
   if (defaultFont == nullptr) return;
 
-  printBMFont(*defaultFont, text, x, y, sdlSurface);
+  defaultFont->print(text, x, y, sdlSurface);
 }
 
 void VGA::flush() {

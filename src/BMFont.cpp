@@ -1,7 +1,6 @@
 #include <filesystem>
 #include <fstream>
 
-#include <panic.hpp>
 #include <strings.hpp>
 #include "BMFont.hpp"
 
@@ -163,8 +162,7 @@ std::map<int, BMFontGlyph *> BMFont::getGlyphs() {
 	return glyphs;
 }
 
-void printBMFont(
-  BMFont font,
+void BMFont::print(
   const std::string& text,
   const int x, const int y,
   SDL_Surface* surface)
@@ -176,13 +174,13 @@ void printBMFont(
 
   for (int a=0; a < text.length(); a++) {
     charcode = text.at(a);
-    if (!mapHasKey(font.getGlyphs(), charcode)) continue;
+    if (!mapHasKey(getGlyphs(), charcode)) continue;
 
-    g = font.getGlyphs()[charcode];
+    g = getGlyphs()[charcode];
     srcRect = { g->x, g->y, g->width, g->height };
     destRect = { left + g->xoffset, y + g->yoffset, g->width, g->height };
 
-    SDL_BlitSurface(font.getImage()->getSurface(), &srcRect, surface, &destRect);
+    SDL_BlitSurface(getImage()->getSurface(), &srcRect, surface, &destRect);
 
     left += g->xadvance;
   }

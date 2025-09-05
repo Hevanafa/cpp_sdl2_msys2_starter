@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 
 #include <Image.hpp>
+#include <panic.hpp>
 
 struct BMFontGlyph {
   int id, x, y;
@@ -29,6 +30,5 @@ public:
   Image* getImage();
   std::map<int, BMFontGlyph*> getGlyphs();
   int measure(const std::string& text);
+  void print(const std::string& text, const int x, const int y, SDL_Surface* surface);
 };
-
-void printBMFont(BMFont font, const std::string& text, const int x, const int y, SDL_Surface* surface);
